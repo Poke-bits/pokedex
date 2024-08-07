@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "./layout";
 import PokemonCard from "./componentes/PokemonCard";
@@ -24,8 +23,7 @@ const HomePage: React.FC = async () => {
       imageUrl: pokemon.sprite,
     }));
   };
-const pokemonList: Pokemon[] = transformData(data)
- 
+  const pokemonList: Pokemon[] = transformData(data);
 
   return (
     <Layout>
@@ -34,7 +32,7 @@ const pokemonList: Pokemon[] = transformData(data)
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          minHeight: "100vh",
+          minHeight: "10px",
           padding: "20px",
         }}
       >
@@ -74,4 +72,3 @@ const pokemonList: Pokemon[] = transformData(data)
 };
 
 export default HomePage;
-
