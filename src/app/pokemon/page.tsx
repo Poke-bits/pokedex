@@ -1,6 +1,7 @@
 "use client";
 
-import PokemonCard from "@/components/CardDetailsPokemon";
+import PokemonCardDetails from "../componentes/pokemonCardDetails";
+
 import React from "react";
 import "../globals.css";
 
@@ -17,9 +18,13 @@ const PokemonPage: React.FC = () => {
   return (
     <div>
       <h1>Pokémon Details</h1>
-      <PokemonCard pokemon={pokemonData} />
+
+      <PokemonCardDetails pokemon={pokemonData} />
+
     </div>
   );
 };
 
+
 export default PokemonPage;
+
