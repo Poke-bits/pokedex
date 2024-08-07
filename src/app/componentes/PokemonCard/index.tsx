@@ -9,8 +9,8 @@ interface PokemonCardProps {
 const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, imageUrl }) => {
     return (
         <div
-            style={{
-                background: '#333333', // Preto fumê
+            style={{ //definições do card.
+                background: '#333333',
                 padding: '20px',
                 borderRadius: '10px',
                 textAlign: 'center',
@@ -27,8 +27,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, imageUrl }) => {
             />
             <div style={{ padding: '10px 0' }}>
                 <div
-                    style={{
-                        background: '#ff0000', // Vermelho
+                    style={{ //definições do id.
+                        background: '#ff0000',
                         color: '#fff',
                         padding: '5px 10px',
                         borderRadius: '5px',
@@ -40,8 +40,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, imageUrl }) => {
                 </div>
                 <h3 style={{ color: '#fff', margin: '10px 0' }}>{name}</h3>
                 <button
-                    style={{
-                        background: '#d3d3d3', // Cinza claro
+                    style={{ //definições do botão 'detalhes'.
+                        background: '#d3d3d3',
                         color: '#000',
                         padding: '10px 20px',
                         border: 'none',

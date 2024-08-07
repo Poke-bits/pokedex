@@ -45,6 +45,7 @@ const HomePage: React.FC = () => {
             imageUrl: ''
         },
 
+
     ];
 
     return (
@@ -54,7 +55,7 @@ const HomePage: React.FC = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    minHeight: '100vh',
+                    minHeight: '10px',
                     padding: '20px'
                 }}
             >
