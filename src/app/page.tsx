@@ -1,3 +1,4 @@
+
 import React from "react";
 import Layout from "./layout";
 import PokemonCard from "./componentes/PokemonCard";
@@ -72,3 +73,4 @@ const HomePage: React.FC = async () => {
 };
 
 export default HomePage;
+
