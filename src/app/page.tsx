@@ -1,3 +1,4 @@
+
 import React from "react";
 import Layout from "./layout";
 import PokemonCard from "./componentes/PokemonCard";
@@ -73,3 +74,4 @@ const pokemonList: Pokemon[] = transformData(data)
 };
 
 export default HomePage;
+
