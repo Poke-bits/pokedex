@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
     });
     const transformData = (data: any): Pokemon[] => {
       return data.getAllPokemon.map((pokemon: any, index: number) => ({
-        id: index + pokemon.key,
+        id: index,
         name: pokemon.key,
         imageUrl: pokemon.sprite,
       }));

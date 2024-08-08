@@ -40,7 +40,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, imageUrl }) => {
                     #{id}
                 </div>
                 <h3 style={{ color: '#fff', margin: '10px 0' }}>{name}</h3>
-                <a href={`/pokemon/${name}`} >
+                <Link href={`/pokemon/${name}`}>
                     <button
                         style={{
                             background: '#d3d3d3',
@@ -54,7 +54,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, imageUrl }) => {
                     >
                         Detalhes
                     </button>
-                </a>
+                </Link>
             </div>
         </div>
     );

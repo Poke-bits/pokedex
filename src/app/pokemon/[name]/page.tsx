@@ -1,16 +1,16 @@
 
 "use client";
 
-import PokemonCardDetails from "../../components/pokemonCardDetails";
-import client from "../../../lib/apolloClient";
-import { GET_POKEMON_DETAILS } from "../../../lib/queries";
+import PokemonCardDetails from "../../../components/pokemonCardDetails";
+import client from "../../../../lib/apolloClient";
+import { GET_POKEMON_DETAILS } from "../../../../lib/queries";
 import React from "react";
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation'
 
 export const PokemonPage: React.FC = (prop) => {
   console.log(prop)
-  const router = useRouter();
-  const { name } = router.query;
+  const params = useParams()
+  const name = params.name;
 
   const loadPokemon = async (name: string) => {
     const { data } = await client.query({
