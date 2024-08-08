@@ -7,8 +7,8 @@ interface PokemonProps {
     name: string;
     image: string;
     type: string;
-    height: string;
-    weight: string;
+    height: number;
+    weight: number;
   };
 }
 
