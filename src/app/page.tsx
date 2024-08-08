@@ -1,5 +1,7 @@
 
-import React from "react";
+'use client';
+
+import React, { useState, useEffect } from "react";
 import Layout from "./layout";
 import PokemonCard from "./componentes/PokemonCard";
 import client from "../../lib/apolloClient";
@@ -11,20 +13,44 @@ interface Pokemon {
   imageUrl: string;
 }
 
-const HomePage: React.FC = async () => {
-  const take = 5;
-  const { data } = await client.query({
-    query: GET_POKEMONS,
-    variables: { take },
-  });
-  const transformData = (data: any): Pokemon[] => {
-    return data.getAllPokemon.map((pokemon: any, index: number) => ({
-      id: index + 1,
-      name: pokemon.key,
-      imageUrl: pokemon.sprite,
-    }));
+const HomePage: React.FC = () => {
+  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
+  const [page, setPage] = useState(1);
+
+  const take = 1000;
+
+  const loadPokemon = async (page: number) => {
+    const { data } = await client.query({
+      query: GET_POKEMONS,
+      variables: { take, skip: (page - 1) * take },
+    });
+    const transformData = (data: any): Pokemon[] => {
+      return data.getAllPokemon.map((pokemon: any, index: number) => ({
+        id: (page - 1) * take + index + 1,
+        name: pokemon.key,
+        imageUrl: pokemon.sprite,
+      }));
+    };
+    setPokemonList((prev) => [...prev, ...transformData(data)]);
   };
-  const pokemonList: Pokemon[] = transformData(data);
+
+  useEffect(() => {
+    loadPokemon(page);
+  }, [page]);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    )
+      return;
+    setPage((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <Layout>
@@ -73,4 +99,3 @@ const HomePage: React.FC = async () => {
 };
 
 export default HomePage;
-
