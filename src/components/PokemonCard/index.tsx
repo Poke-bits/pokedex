@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 interface PokemonCardProps {
     id: number;
@@ -9,7 +10,7 @@ interface PokemonCardProps {
 const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, imageUrl }) => {
     return (
         <div
-            style={{ //definições do card.
+            style={{
                 background: '#333333',
                 padding: '20px',
                 borderRadius: '10px',
@@ -27,7 +28,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, imageUrl }) => {
             />
             <div style={{ padding: '10px 0' }}>
                 <div
-                    style={{ //definições do id.
+                    style={{
                         background: '#ff0000',
                         color: '#fff',
                         padding: '5px 10px',
@@ -39,19 +40,21 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, imageUrl }) => {
                     #{id}
                 </div>
                 <h3 style={{ color: '#fff', margin: '10px 0' }}>{name}</h3>
-                <button
-                    style={{ //definições do botão 'detalhes'.
-                        background: '#d3d3d3',
-                        color: '#000',
-                        padding: '10px 20px',
-                        border: 'none',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        fontSize: '16px',
-                    }}
-                >
-                    Detalhes
-                </button>
+                <a href={`/pokemon/${name}`} >
+                    <button
+                        style={{
+                            background: '#d3d3d3',
+                            color: '#000',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                        }}
+                    >
+                        Detalhes
+                    </button>
+                </a>
             </div>
         </div>
     );

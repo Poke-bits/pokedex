@@ -9,3 +9,17 @@ export const GET_POKEMONS = gql`
     }
   }
 `;
+
+export const GET_POKEMON_DETAILS = gql`
+  query GetPokemon($pokemon: PokemonEnum!) {
+  getPokemon(pokemon: $pokemon) {
+    sprite
+    types {
+      name
+    }
+    weight
+    height
+    key
+  }
+}
+`;

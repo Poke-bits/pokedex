@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import Layout from "./layout";
-import PokemonCard from "./componentes/PokemonCard";
+import PokemonCard from "../components/PokemonCard";
 import client from "../../lib/apolloClient";
 import { GET_POKEMONS } from "../../lib/queries";
 
@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [page, setPage] = useState(1);
 
-  const take = 1000;
+  const take = 10;
 
   const loadPokemon = async (page: number) => {
     const { data } = await client.query({
@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
     });
     const transformData = (data: any): Pokemon[] => {
       return data.getAllPokemon.map((pokemon: any, index: number) => ({
-        id: (page - 1) * take + index + 1,
+        id: index + pokemon.key,
         name: pokemon.key,
         imageUrl: pokemon.sprite,
       }));
@@ -84,9 +84,9 @@ const HomePage: React.FC = () => {
             alignItems: "center",
           }}
         >
-          {pokemonList.map((pokemon) => (
+          {pokemonList.map((pokemon, key) => (
             <PokemonCard
-              key={pokemon.id}
+              key={key}
               id={pokemon.id}
               name={pokemon.name}
               imageUrl={pokemon.imageUrl}
