@@ -6,6 +6,21 @@ import client from "../../../../lib/apolloClient";
 import { GET_POKEMON_DETAILS } from "../../../../lib/queries";
 import React from "react";
 import { useParams } from 'next/navigation'
+import styled from "styled-components";
+
+const Title = styled.h1`
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
+const PokemonText = styled.span`
+  color: black;
+`;
+
+const DetailsText = styled.span`
+  color: red;
+`;
 
 export const PokemonPage: React.FC = (prop) => {
   console.log(prop)
@@ -46,7 +61,9 @@ export const PokemonPage: React.FC = (prop) => {
 
   return (
     <div>
-      <h1>Pokémon Details</h1>
+      <Title>
+        <PokemonText>Pokémon</PokemonText> <DetailsText>Details</DetailsText>
+      </Title>
       <PokemonCardDetails pokemon={pokemonData} />
     </div>
   );
