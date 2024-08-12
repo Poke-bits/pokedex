@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from "react";
@@ -6,6 +5,7 @@ import Layout from "./layout";
 import PokemonCard from "../components/PokemonCard";
 import client from "../../lib/apolloClient";
 import { GET_POKEMONS } from "../../lib/queries";
+import styled from 'styled-components';
 
 interface Pokemon {
   id: number;
@@ -13,11 +13,45 @@ interface Pokemon {
   imageUrl: string;
 }
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 10px;
+  padding: 20px;
+`;
+
+const Header = styled.div`
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
+const Title = styled.h2`
+  margin: 0;
+  font-size: 32px;
+`;
+
+const RedSpan = styled.span`
+  color: red;
+`;
+
+const BlackSpan = styled.span`
+  color: black;
+`;
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+`;
+
 const HomePage: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [page, setPage] = useState(1);
 
-  const take = 10;
+  const take = 3;
 
   const loadPokemon = async (page: number) => {
     const { data } = await client.query({
@@ -54,36 +88,14 @@ const HomePage: React.FC = () => {
 
   return (
     <Layout>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          minHeight: "10px",
-          padding: "20px",
-        }}
-      >
-        <div
-          style={{
-            marginBottom: "20px",
-            textAlign: "center",
-          }}
-        >
-          <h2 style={{ margin: 0, fontSize: "32px" }}>
-            <span style={{ color: "red" }}>Poke</span>
-            <span style={{ color: "black" }}>CoreX</span>
-          </h2>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "20px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+      <Container>
+        <Header>
+          <Title>
+            <RedSpan>Poke</RedSpan>
+            <BlackSpan>CoreX</BlackSpan>
+          </Title>
+        </Header>
+        <GridContainer>
           {pokemonList.map((pokemon, key) => (
             <PokemonCard
               key={key}
@@ -92,8 +104,8 @@ const HomePage: React.FC = () => {
               imageUrl={pokemon.imageUrl}
             />
           ))}
-        </div>
-      </div>
+        </GridContainer>
+      </Container>
     </Layout>
   );
 };
